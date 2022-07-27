@@ -63,8 +63,8 @@ public class Main {
      */
     public static void task2(int[] buhbook) {
         System.out.println("-> Task 2");
-        int minValue = 200_000;
-        int maxValue = -1;
+        int minValue = buhbook[0];
+        int maxValue = buhbook[0];
         for (int currValue : buhbook) {
             if (currValue > maxValue) {
                 maxValue = currValue;
