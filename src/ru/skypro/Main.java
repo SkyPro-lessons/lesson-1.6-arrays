@@ -9,10 +9,16 @@ public class Main {
         System.out.println();
         int[] buhBook = generateRandomArray();
         printArray(buhBook);
+
         int monthlyAmount = task1(buhBook);
         task2(buhBook);
         task3(buhBook, monthlyAmount);
         task4();
+        task5();
+        task6();
+        task7();
+        task8();
+        task9();
     }
 
     private static void printArray(int[] buhBook) {
@@ -111,6 +117,135 @@ public class Main {
         for (int i = reverseFullName.length - 1; i >= 0; i--) {
             System.out.print(reverseFullName[i]);
         }
+        System.out.println();
+    }
+
+    /** Задача 5*
+     * Создайте матрицу 3х3 (двумерный массив типа int).
+     *      Заполните единицами обе диагонали матрицы и напечатайте ее в консоль.
+     *      Постарайтесь заполнить обе диагонали в одном цикле.
+     *
+     * Для печати следует использовать следующий код:
+     *      for (int[] row : matrix) {
+     * 	        for (int column : row) {
+     * 		        System.out.print(column + " ");
+     *          }
+     * 	        System.out.println();
+     *      }
+     */
+    public static void task5() {
+        System.out.println("Task 5*");
+        int arraySize = 3;
+        int[][] matrix = new int[arraySize][arraySize];
+        int j;
+        for (int i = 0; i < matrix.length; i++) {
+            matrix[i][i] = 1;
+            j = matrix.length - i - 1;
+            matrix[i][j] = 1;
+        }
+        for (int[] row : matrix) {
+            for(int column : row) {
+                System.out.print(column + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    /** Задание 6*
+     * У нас есть массив, в котором содержатся целочисленные значения от 1 до 5.
+     * Наш коллега что-то напутал, в итоге массив читается не с начала, а с конца.
+     * Нам нужно исправить ошибку и переработать код так, чтобы массив читался в правильном порядке.
+     * Нам дан массив чисел: {5, 4, 3, 2, 1}
+     * Необходимо привести его к виду: {1, 2, 3, 4, 5}
+     * Решите задачу с использованием дополнительного массива.
+     * Напечатайте массив до преобразования и после с помощью
+     *      System.out.println(Arrays.toString(arr));
+     */
+    public static void task6() {
+        System.out.println("Task 6*");
+        int[] wrongArray = {5, 4, 3, 2, 1};
+        System.out.println(Arrays.toString(wrongArray));
+        int[] correctArray = new int[wrongArray.length];
+        for (int i = 0; i < wrongArray.length; i++) {
+            correctArray[i] = wrongArray[wrongArray.length - 1 - i];
+        }
+        System.out.println(Arrays.toString(correctArray));
+        System.out.println();
+    }
+
+    /** Task 7*
+     * Решите предыдущее задание, но без использования дополнительного массива.
+     * Необходимо добиться того, чтобы исходный массив полностью соответствовал второму массиву из прошлого задания.
+     * Выведите результат программы в консоль тем же способом.
+     * Уточнения:
+     * Это задание не на сортировку.
+     * Не использовать Arrays.sort() и другие способы сортировок.
+     * Числа в порядке убывания даны исключительно для указания направления чтения.
+     * Массив может быть 5 8 2 3 9, нужно из него сделать 9 3 2 8 5.
+     */
+    public static void task7() {
+        System.out.println("Task 7*");
+        int[] wrongArray = {5, 4, 3, 2, 1};
+        //int[] wrongArray = {5, 8, 2, 3, 9};
+        int temp;
+        System.out.println(Arrays.toString(wrongArray));
+        for (int i = 0; i < wrongArray.length / 2; i++) {
+            temp = wrongArray[i];
+            wrongArray[i] = wrongArray[wrongArray.length - 1 - i];
+            wrongArray[wrongArray.length - 1 - i] = temp;
+        }
+        System.out.println(Arrays.toString(wrongArray));
+        System.out.println();
+    }
+
+    /** Задание 8*
+     * Задача, которая используется/бывает/встречается на собеседованиях.
+     * Дан массив чисел {−6, 2, 5, −8, 8, 10, 4, −7, 12, 1}
+     * Необходимо найти два числа, сумма которых равна −2.
+     * Напечатать эти числа в консоль.
+     */
+    public static void task8() {
+        System.out.println("Task 8*");
+        int[] array = {-6, 2, 5, -8, 8, 10, 4, -7, 12, 1};
+        Arrays.sort(array);
+        System.out.println(Arrays.toString(array));
+
+        int requiredAmount = -2;
+        int summCurrentNumbers;
+
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                summCurrentNumbers = array[i] + array[j];
+                if (summCurrentNumbers == requiredAmount) {
+                    System.out.println("Сумма чисел " + array[i] + " и " + array[j] + " дают в сумме -2");
+                }
+            }
+        }
+
+        System.out.println();
+    }
+
+    /** Задание 9*
+     * Усложняем предыдущую задачу.
+     * Найдите все пары чисел, сумма которых равна −2.
+     * Напечатайте их в консоль.
+     */
+    public static void task9() {
+        System.out.println("Task 9*");
+        int[] array = {-6, 2, 5, -8, 8, 10, 4, -7, 12, 1};
+        int requiredAmount = -2;
+        Arrays.sort(array);
+        int summCurrentNumbers = 0;
+        for (int i = 0; array[i] < 0; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                summCurrentNumbers = array[i] + array[j];
+                if (summCurrentNumbers == requiredAmount) {
+                    System.out.println("Сумма чисел " + array[i] + " и " + array[j] + " дают в сумме -2");
+                }
+            }
+        }
+
         System.out.println();
     }
 }
