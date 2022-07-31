@@ -211,13 +211,13 @@ public class Main {
         System.out.println(Arrays.toString(array));
 
         int requiredAmount = -2;
-        int summCurrentNumbers;
+        int currentAmount = 0;
         boolean isStop = false;
 
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = i + 1; j < array.length; j++) {
-                summCurrentNumbers = array[i] + array[j];
-                if (summCurrentNumbers == requiredAmount) {
+                currentAmount = array[i] + array[j];
+                if (currentAmount == requiredAmount) {
                     System.out.println("Сумма чисел " + array[i] + " и " + array[j] + " дают в сумме -2");
                     isStop = true;
                     break;
@@ -239,13 +239,15 @@ public class Main {
     public static void task9() {
         System.out.println("Task 9*");
         int[] array = {-6, 2, 5, -8, 8, 10, 4, -7, 12, 1};
+        System.out.println(Arrays.toString(array));
+
         int requiredAmount = -2;
-        Arrays.sort(array);
-        int summCurrentNumbers = 0;
-        for (int i = 0; array[i] < 0; i++) {
+        int currentAmount = 0;
+
+        for (int i = 0; array[i] < array.length - 1; i++) {
             for (int j = i + 1; j < array.length; j++) {
-                summCurrentNumbers = array[i] + array[j];
-                if (summCurrentNumbers == requiredAmount) {
+                currentAmount = array[i] + array[j];
+                if (currentAmount == requiredAmount) {
                     System.out.println("Сумма чисел " + array[i] + " и " + array[j] + " дают в сумме -2");
                 }
             }
