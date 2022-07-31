@@ -208,18 +208,23 @@ public class Main {
     public static void task8() {
         System.out.println("Task 8*");
         int[] array = {-6, 2, 5, -8, 8, 10, 4, -7, 12, 1};
-        Arrays.sort(array);
         System.out.println(Arrays.toString(array));
 
         int requiredAmount = -2;
         int summCurrentNumbers;
+        boolean isStop = false;
 
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = i + 1; j < array.length; j++) {
                 summCurrentNumbers = array[i] + array[j];
                 if (summCurrentNumbers == requiredAmount) {
                     System.out.println("Сумма чисел " + array[i] + " и " + array[j] + " дают в сумме -2");
+                    isStop = true;
+                    break;
                 }
+            }
+            if (isStop) {
+                break;
             }
         }
 
